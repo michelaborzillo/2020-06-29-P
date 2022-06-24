@@ -8,6 +8,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import it.polito.tdp.PremierLeague.model.Mese;
 import it.polito.tdp.PremierLeague.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -39,7 +41,7 @@ public class FXMLController {
     private TextField txtMinuti; // Value injected by FXMLLoader
 
     @FXML // fx:id="cmbMese"
-    private ComboBox<?> cmbMese; // Value injected by FXMLLoader
+    private ComboBox<Mese> cmbMese; // Value injected by FXMLLoader
 
     @FXML // fx:id="cmbM1"
     private ComboBox<?> cmbM1; // Value injected by FXMLLoader
@@ -57,6 +59,14 @@ public class FXMLController {
 
     @FXML
     void doCreaGrafo(ActionEvent event) {
+    	txtResult.clear();
+    	String m= txtMinuti.getText();
+    	int minuti= Integer.parseInt(m);
+    	Mese mese= cmbMese.getValue();
+    	model.creaGrafo(mese, minuti);
+    	txtResult.appendText("Grafo creato!\n");
+		txtResult.appendText("VERTICI: "+this.model.nVertici()+"\n");
+    	txtResult.appendText("ARCHI: "+this.model.nArchi()+"\n");
     	
     }
 
@@ -71,7 +81,7 @@ public class FXMLController {
         assert btnConnessioneMassima != null : "fx:id=\"btnConnessioneMassima\" was not injected: check your FXML file 'Scene.fxml'.";
         assert btnCollegamento != null : "fx:id=\"btnCollegamento\" was not injected: check your FXML file 'Scene.fxml'.";
         assert txtMinuti != null : "fx:id=\"txtMinuti\" was not injected: check your FXML file 'Scene.fxml'.";
-        assert cmbMese != null : "fx:id=\"cmbMese\" was not injected: check your FXML file 'Scene.fxml'.";        assert cmbM1 != null : "fx:id=\"cmbM1\" was not injected: check your FXML file 'Scene.fxml'.";
+      //  assert cmbMese != null : "fx:id=\"cmbMese\" was not injected: check your FXML file 'Scene.fxml'.";        assert cmbM1 != null : "fx:id=\"cmbM1\" was not injected: check your FXML file 'Scene.fxml'.";
         assert cmbM2 != null : "fx:id=\"cmbM2\" was not injected: check your FXML file 'Scene.fxml'.";
         assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'Scene.fxml'.";
 
@@ -79,7 +89,8 @@ public class FXMLController {
     
     public void setModel(Model model) {
     	this.model = model;
-  
+    	cmbMese.getItems().clear();
+    	cmbMese.getItems().addAll(new Mese ("Gennaio", 1), new Mese ("Febbraio", 2),  new Mese ("Marzo", 3), new Mese ("Aprile", 4), new Mese ("Maggio", 5), new Mese ("Giugno", 6),new Mese ("Luglio", 7), new Mese ("Agosto", 8), new Mese ("Settembre", 9),new Mese ("Ottobre", 10),new Mese ("Novembre", 11), new Mese ("Dicembre", 12));
     }
     
     

@@ -16,7 +16,7 @@ public class Match {
 	LocalDateTime date;
 	
 	public Match(Integer matchID, Integer teamHomeID, Integer teamAwayID, Integer teamHomeFormation,
-			Integer teamAwayFormation, Integer resultOfTeamHome, LocalDateTime date, String teamHomeNAME, String teamAwayNAME) {
+			Integer teamAwayFormation, Integer resultOfTeamHome, LocalDateTime date) {
 		super();
 		this.matchID = matchID;
 		this.teamHomeID = teamHomeID;
